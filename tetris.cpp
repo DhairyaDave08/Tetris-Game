@@ -35,6 +35,7 @@ int level = 1;
 DWORD lastFallTime = 0;
 string playerName;
 int highScore = 0;
+bool smashUsed = false; // Track if the smash feature has been used
 
 // Function prototypes
 void gotoxy(int x, int y);
@@ -53,8 +54,8 @@ void loadHighScore();
 void saveHighScore();
 void gameLoop();
 void drawNumber(int number);
-void drawStart();
 void countdown();
+void playSound(int frequency, int duration);
 
 // Function definitions
 void gotoxy(int x, int y) {
@@ -131,6 +132,8 @@ void clearLines() {
             level++;
             dropSpeed = max(MIN_SPEED, dropSpeed - SPEED_INCREMENT);
         }
+
+        playSound(800, 200); // Play sound for clearing lines
     }
 }
 
@@ -160,6 +163,7 @@ void hardDrop() {
     placePiece();
     clearLines();
     spawnPiece();
+    playSound(600, 100); // Play sound for hard drop
 }
 
 void drawBoard() {
@@ -234,6 +238,8 @@ void drawBoard() {
     gotoxy(WIDTH * 2 + 5, 20);
     cout << "Spacebar    - Hard Drop";
     gotoxy(WIDTH * 2 + 5, 21);
+    cout << "S           - Smash (Once per game, requires 500 points)";
+    gotoxy(WIDTH * 2 + 5, 22);
     cout << "Q           - Quit";
 }
 
@@ -242,15 +248,37 @@ void handleInput() {
         int key = _getch();
         if (key == 'q' || key == 'Q') gameOver = true;
         if (key == 32) hardDrop();
+        if (key == 's' || key == 'S') {
+            if (score >= 500 && !smashUsed) {
+                // Clear the board
+                for (int i = 0; i < HEIGHT; i++) {
+                    for (int j = 0; j < WIDTH; j++) {
+                        board[i][j] = 0;
+                    }
+                }
+                smashUsed = true; // Mark smash as used
+                playSound(1000, 300); // Play sound for smash
+            }
+        }
         if (key == 224) { // Arrow keys
             key = _getch();
-            if (key == 75 && isValidMove(currentX - 1, currentY, currentTetromino)) currentX--; // Left
-            if (key == 77 && isValidMove(currentX + 1, currentY, currentTetromino)) currentX++; // Right
-            if (key == 80 && isValidMove(currentX, currentY + 1, currentTetromino)) currentY++; // Down
+            if (key == 75 && isValidMove(currentX - 1, currentY, currentTetromino)) {
+                currentX--; // Left
+                playSound(300, 50); // Play sound for moving left
+            }
+            if (key == 77 && isValidMove(currentX + 1, currentY, currentTetromino)) {
+                currentX++; // Right
+                playSound(300, 50); // Play sound for moving right
+            }
+            if (key == 80 && isValidMove(currentX, currentY + 1, currentTetromino)) {
+                currentY++; // Down
+                playSound(300, 50); // Play sound for soft drop
+            }
             if (key == 72) { // Up (rotate)
                 vector<vector<int>> rotated = rotate(currentTetromino);
                 if (isValidMove(currentX, currentY, rotated)) {
                     currentTetromino = rotated;
+                    playSound(500, 100); // Play sound for rotating
                 }
             }
         }
@@ -273,21 +301,24 @@ void saveHighScore() {
     }
 }
 
-// Function to draw numbers using *
+void playSound(int frequency, int duration) {
+    Beep(frequency, duration);
+}
+
 void drawNumber(int number) {
     vector<string> num3 = {
-        "*****",
+        "*",
         "    *",
-        "*****",
+        "*",
         "    *",
-        "*****"
+        "*"
     };
     vector<string> num2 = {
-        "*****",
+        "*",
         "    *",
-        "*****",
+        "*",
         "*    ",
-        "*****"
+        "*"
     };
     vector<string> num1 = {
         "  *  ",
@@ -321,7 +352,6 @@ void drawNumber(int number) {
     }
 }
 
-// Function to display the countdown
 void countdown() {
     system("cls");
     setColor(14); // Yellow for countdown
@@ -357,6 +387,8 @@ void gameLoop() {
         highScore = score;
         saveHighScore();
     }
+
+    playSound(200, 500); // Play sound for game over
 }
 
 int main() {
@@ -387,6 +419,7 @@ int main() {
         score = 0;
         level = 1;
         linesCleared = 0;
+        smashUsed = false; // Reset smash feature for the next game
         board = vector<vector<int>>(HEIGHT, vector<int>(WIDTH, 0));
     }
 }
