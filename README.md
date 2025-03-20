@@ -12,8 +12,6 @@ A colorful, console-based Tetris game built in **C++** with smooth controls, rea
 | 📈 **Leveling System** | Increases speed after every 5 cleared lines |
 | 🎯 **Real-time Input Handling** | Smooth and responsive controls |
 | 💾 **Game-over Detection** | Ends game when pieces reach the top |
-| ⏸️ **Pause and Restart** | Pause and resume anytime |
-| 🖥️ **Cross-Platform Compatibility** | Works on **Windows**|
 
 ---
 
@@ -52,7 +50,6 @@ A colorful, console-based Tetris game built in **C++** with smooth controls, rea
 | ↓ | Soft Drop |
 | ↑ | Rotate Piece |
 | ␣ Spacebar | Hard Drop |
-| ESC | Pause/Resume |
 | Q/q | Quit Game |
 
 ---
@@ -69,12 +66,12 @@ A colorful, console-based Tetris game built in **C++** with smooth controls, rea
 ---
 
 ## 👥 **Contributors**
-| 🥇 Contributor | 🎓 ID |
+| Contributor | 🎓 ID |
 |---------------|-------|
-| **Dhairya Dave** | 202401251 |
-| **Manthan Bhatt** | 202401407 |
-| **Hilag Shah** | 202401469 |
-| **Shlok Thakkar** | 202401203 |
+| **🥇 Dhairya Dave** | 202401251 |
+| **🥇 Manthan Bhatt** | 202401407 |
+| **🥇 Hilag Shah** | 202401469 |
+| **🥇 Shlok Thakkar** | 202401203 |
 
 ---
 
