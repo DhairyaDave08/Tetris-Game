@@ -61,7 +61,7 @@ A colorful, console-based Tetris game built in **C++** with smooth controls, rea
 |---------|-------------|
 | 🎯 **Goal** | Arrange falling Tetrominoes to form full horizontal lines |
 | 💣 **Line Clearing** | Completed lines are removed, and the board shifts down |
-| 🏆 **Scoring** | - 1 line → **100 points**<br> - 2 lines → **300 points**<br> - 3 lines → **500 points**<br> - 4 lines (Tetris) → **800 points**<br> - Soft drop → **1 point per drop** |
+| 🏆 **Scoring** | 1 line → **100 points** |
 | 📈 **Leveling** | After every **5 cleared lines**, the game level increases and pieces fall faster |
 | 🚨 **Game Over** | The game ends when the Tetrominoes reach the top of the board |
 
