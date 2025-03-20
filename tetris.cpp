@@ -264,21 +264,17 @@ void handleInput() {
             key = _getch();
             if (key == 75 && isValidMove(currentX - 1, currentY, currentTetromino)) {
                 currentX--; // Left
-                playSound(300, 50); // Play sound for moving left
             }
             if (key == 77 && isValidMove(currentX + 1, currentY, currentTetromino)) {
                 currentX++; // Right
-                playSound(300, 50); // Play sound for moving right
             }
             if (key == 80 && isValidMove(currentX, currentY + 1, currentTetromino)) {
                 currentY++; // Down
-                playSound(300, 50); // Play sound for soft drop
             }
             if (key == 72) { // Up (rotate)
                 vector<vector<int>> rotated = rotate(currentTetromino);
                 if (isValidMove(currentX, currentY, rotated)) {
                     currentTetromino = rotated;
-                    playSound(500, 100); // Play sound for rotating
                 }
             }
         }
@@ -307,18 +303,18 @@ void playSound(int frequency, int duration) {
 
 void drawNumber(int number) {
     vector<string> num3 = {
-        "*",
+        "*****",
         "    *",
-        "*",
+        "*****",
         "    *",
-        "*"
+        "*****"
     };
     vector<string> num2 = {
-        "*",
+        "*****",
         "    *",
-        "*",
+        "****",
         "*    ",
-        "*"
+        "*****"
     };
     vector<string> num1 = {
         "  *  ",
@@ -393,13 +389,16 @@ void gameLoop() {
 
 int main() {
     loadHighScore();
+
+    // Ask for player name only once at the start of the program
+    system("cls");
+    setColor(14); // Yellow for title
+    cout << "===== TETRIS GAME =====\n";
+    setColor(15); // Bright white for text
+    cout << "Enter player name: ";
+    cin >> playerName;
+
     while (true) {
-        system("cls");
-        setColor(14); // Yellow for title
-        cout << "===== TETRIS GAME =====\n";
-        setColor(15); // Bright white for text
-        cout << "Enter player name: ";
-        cin >> playerName;
         hideCursor();
         srand(time(0));
         nextPiece = rand() % tetrominoes.size();
