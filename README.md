@@ -12,7 +12,7 @@ A colorful, console-based Tetris game built in **C++** with smooth controls, rea
 | 📈 **Leveling System** | Increases speed after every 5 cleared lines |
 | 🎯 **Real-time Input Handling** | Smooth and responsive controls |
 | 💾 **Game-over Detection** | Ends game when pieces reach the top |
-
+| 💥 **Smash Feature** | Removes all element while score remains intact |
 ---
 
 ## 📚 **Data Structures and Concepts Used**
@@ -51,6 +51,7 @@ A colorful, console-based Tetris game built in **C++** with smooth controls, rea
 | ↑ | Rotate Piece |
 | ␣ Spacebar | Hard Drop |
 | Q/q | Quit Game |
+| S/s | Smash |
 
 ---
 
