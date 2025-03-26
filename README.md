@@ -13,7 +13,7 @@ A colorful, console-based Tetris game built in **C++** with smooth controls, rea
 | 🎯 **Real-time Input Handling** | Smooth and responsive controls |
 | 💾 **Game-over Detection** | Ends game when pieces reach the top |
 | 💥 **Smash Feature** | Removes all element while score remains intact |
-| 🔊 **Sound** | Makes sound when any key is pressed or clears line |
+| 🔊 **Sound** | Makes sound when hard Drop occurs or clears line |
 ---
 
 ## 📚 **Data Structures and Concepts Used**
