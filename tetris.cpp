@@ -1,3 +1,19 @@
+/*
+  Tetris Game
+  BY:-  Data Detective
+
+
+  
+  contributors:
+  Dhairya Dave-202401251
+  Manthan Bhatt-202401407
+  Hilag Shah-202401469
+  Shlok Thakkar-202401203
+*/
+    
+
+
+
 #include <iostream>
 #include <vector>
 #include <conio.h>
@@ -13,7 +29,7 @@ const int INITIAL_SPEED = 500;
 const int SPEED_INCREMENT = 50;
 const int MIN_SPEED = 100;
 const int LINES_PER_LEVEL = 5;
-
+// Declaring tetrominoes
 vector<vector<vector<int>>> tetrominoes = {
     {{1, 1, 1, 1}},         // I
     {{1, 1}, {1, 1}},       // O
@@ -61,22 +77,22 @@ void playSound(int frequency, int duration);
 void gotoxy(int x, int y) {
     COORD coord = {static_cast<SHORT>(x), static_cast<SHORT>(y)};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-}
+}  // cartesian coordinates are used here
 
 void hideCursor() {
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cursorInfo = {1, false};
     SetConsoleCursorInfo(console, &cursorInfo);
-}
+}  //hides cursor from screen
 
 void setColor(int fgColor, int bgColor) {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), fgColor | (bgColor << 4));
-}
+} // sets foreground color 
 
 int getPieceColor(int piece) {
     int colors[] = {11, 14, 13, 10, 12, 6, 9}; // Bright colors for each tetromino
     return colors[piece % 7];
-}
+}  // color array of tetrominoes
 
 bool isValidMove(int x, int y, const vector<vector<int>> &shape) {
     for (size_t i = 0; i < shape.size(); i++) {
@@ -91,7 +107,7 @@ bool isValidMove(int x, int y, const vector<vector<int>> &shape) {
         }
     }
     return true;
-}
+} // check the vaild move or not
 
 void placePiece() {
     for (size_t i = 0; i < currentTetromino.size(); i++) {
@@ -102,7 +118,7 @@ void placePiece() {
         }
     }
 }
-
+//plaxces the piece initially
 void clearLines() {
     int cleared = 0;
     for (int i = HEIGHT - 1; i >= 0; i--) {
@@ -132,7 +148,7 @@ void clearLines() {
             level++;
             dropSpeed = max(MIN_SPEED, dropSpeed - SPEED_INCREMENT);
         }
-
+        
         playSound(800, 200); // Play sound for clearing lines
     }
 }
