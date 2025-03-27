@@ -22,7 +22,7 @@ A colorful, console-based Tetris game built in **C++** with smooth controls, rea
 |------------------|---------|
 | 📏 **2D Vectors** | Represents the game board and Tetrominoes |
 | 🎨 **Arrays** | Manages colors and Tetromino types |
-| 🧱 **Classes/Structs** | Implements object-oriented design |
+
 
 ### ➡️ **OOP Concepts**  
 | 🧠 OOP Concept | Description |
